@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import Layout from "../Layout/Layout";
 import { useRouter } from "next/router";
 import styles from "../styles/pages/Register.module.css";
+import { stringify } from "node:querystring";
 
 const Login = () => {
   // definition of variables
@@ -14,18 +15,26 @@ const Login = () => {
     e.preventDefault();
 
     // API connection
-    const login = await fetch("http://localhost:3333/login", {
+    const login = await fetch("http://localhost:3333/login/a", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         email: email,
         password: password,
       }),
     });
+    // console.log(login)
 
     // login sucess or not
-    if(login.status === 200){
-      return router.push('/index');
+    if (login.status === 200) {
+
+      // Get token
+      const {token} = await login.json();
+      localStorage.setItem('token', token);
+
+      return router.push('/create');
     } else {
       window.alert("Login Incorreto!")
     }
@@ -57,10 +66,9 @@ const Login = () => {
 
         <button type="submit">
           <img src="img/login.png" />
-          Login
+          Criar Usuário
         </button>
       </form>
-      <a href="/Recover ">esqueceu sua senha ? clique aqui</a>
     </Layout>
   );
 };

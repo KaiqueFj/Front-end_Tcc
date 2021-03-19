@@ -7,7 +7,7 @@ const login = () => {
   // definition of variables
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const router = useRouter();
+    const router = useRouter();
   // submit function
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();

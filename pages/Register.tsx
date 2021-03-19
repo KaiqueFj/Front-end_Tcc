@@ -1,9 +1,13 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent } from "react";
 import Layout from "../Layout/Layout";
 import { useRouter } from 'next/router';
 import styles from '../styles/pages/Register.module.css';
+import { useState } from 'react';
+
 
 const Register = () => {
+
+    //const {data} = useContext(ChallengesContext)
 
     // definition of variables
     const [name, setName] = useState('');
@@ -14,29 +18,28 @@ const Register = () => {
     // submit function
     const submit = async (e: SyntheticEvent) => {
 
-        try {
+        e.preventDefault();
 
-            e.preventDefault();
+        // API connection
+        const register = await fetch('http://localhost:3333/users', {
+            method: 'POST',
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+               },
+        
+            body: JSON.stringify({
+                username: name,
+                email: email,
+                password: password
+            })
+        });
 
-            // API connection
-            await fetch('http://localhost:3333/users', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: name,
-                    email: email,
-                    password: password
-                })
-            });
-
-            // Change page to...
-            await router.push('/Login');
-
-        } catch { 
-            window.alert("Error!")
-        }
-
-
+        const data = await register.json();
+        const dataConvert = JSON.stringify(data);
+        console.log(dataConvert)
+        
+        return router.push('/Login')
     }
 
     return (
@@ -73,13 +76,19 @@ const Register = () => {
                     />
                 </div>
 
+
+
                 <button type="submit">
                     <img src="img/login.png" />
                     Criar Usuário
                     </button>
 
+
+
             </form>
+
         </Layout>
+
     );
 };
 
