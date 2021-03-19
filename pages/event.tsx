@@ -54,7 +54,7 @@ const Event = () => {
           <img src="img/userPurple.png" />
           <input
             onChange={(e) => setDay(e.target.value)}
-            placeholder="dia da semana"
+            placeholder="dia da semanaa"
             required
           />
         </div>
