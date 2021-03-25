@@ -21,7 +21,7 @@ const Register = () => {
         e.preventDefault();
 
         // API connection
-        const register = await fetch('http://localhost:3333/users', {
+        const register = await fetch('http://localhost:3333/users/register', {
             method: 'POST',
             headers : { 
                 'Content-Type': 'application/json',

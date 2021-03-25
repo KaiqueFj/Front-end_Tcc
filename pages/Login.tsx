@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     // API connection
-    const login = await fetch("http://localhost:3333/login/a", {
+    const login = await fetch("http://localhost:3333/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,8 +66,10 @@ const Login = () => {
 
         <button type="submit">
           <img src="img/login.png" />
-          Criar Usuário
+          Sing In
         </button>
+
+        <a href="../Recover">Esqueceu sua senha ?</a>
       </form>
     </Layout>
   );

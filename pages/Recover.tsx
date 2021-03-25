@@ -13,7 +13,7 @@ const Recover = () => {
     e.preventDefault();
 
     // API connection
-    const login = await fetch("http://localhost:3333/users/forgotPassword", {
+    const login = await fetch("http://localhost:3333/password/recover", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

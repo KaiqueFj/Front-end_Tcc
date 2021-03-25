@@ -3,6 +3,7 @@ import Layout from "../Layout/Layout";
 import { useRouter } from "next/router";
 import styles from "../styles/pages/Register.module.css";
 
+
 const Event = () => {
   // definition of variables
   const [day, setDay] = useState("");
@@ -18,13 +19,14 @@ const Event = () => {
     e.preventDefault();
 
     // API connection
-    const login = await fetch("http://localhost:3333/event/new", {
+    const login = await fetch("http://localhost:3333/create/medicine", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
+        day:day,
         title: title,
         location: location,
         date: date,
@@ -57,7 +59,7 @@ const Event = () => {
           <img src="img/userPurple.png" />
           <input
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="Remédio"
             required
           />
         </div>
@@ -66,7 +68,7 @@ const Event = () => {
           <img src="img/password.png" />
           <input
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="Location"
+            placeholder="Remédio"
             required
           />
         </div>
@@ -75,7 +77,7 @@ const Event = () => {
           <img src="img/password.png" />
           <input
             onChange={(e) => setDate(e.target.value)}
-            placeholder="date"
+            placeholder="dia"
             required
           />
         </div>
@@ -84,7 +86,7 @@ const Event = () => {
           <img src="img/password.png" />
           <input
             onChange={(e) => setTime(e.target.value)}
-            placeholder="Time"
+            placeholder="horario"
             required
           />
         </div>
