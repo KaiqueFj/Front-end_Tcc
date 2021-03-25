@@ -5,7 +5,7 @@ import styles from "../styles/pages/Register.module.css";
 
 const login = () => {
   // definition of variables
-  const [username, setUsername] = useState("");
+  const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [newPassword, setnewPassword] = useState("");
 
@@ -19,7 +19,7 @@ const login = () => {
       method: "PUT",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
-        username: username,
+        email: email,
         password: password,
         newPassword: newPassword
       }),
@@ -34,21 +34,13 @@ const login = () => {
         <div className={styles.inputContainer}>
           <img src="img/userPurple.png" />
           <input
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
+            onChange={(e) => setemail(e.target.value)}
+            placeholder="email"
             required
           />
         </div>
 
-        <div className={styles.inputContainer}>
-          <img src="img/password.png" />
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Senha antiga"
-            required
-          />
-        </div>
+      
         <div className={styles.inputContainer}>
           <img src="img/password.png" />
           <input
